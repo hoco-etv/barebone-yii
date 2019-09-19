@@ -18,6 +18,9 @@ Thumbs.db
 # composer itself is not needed
 composer.phar
 
+#data folder
+/data
+
 # Mac DS_Store Files
 .DS_Store
 

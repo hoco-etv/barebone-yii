@@ -15,6 +15,8 @@ if (strpos($_SERVER['HTTP_HOST'], 'tudelft.nl') === false) {
 	defined('YII_ENV_DEV') or define('YII_ENV_DEV', false);
 }
 
+// echo "index.php from web folder";
+
 require(__DIR__ . '/../vendor/autoload.php');
 require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
