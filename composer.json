@@ -12,12 +12,16 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.5",
-        "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0"
+        "php": "~7.0",
+        "yidas/yii2-bower-asset": "~2.0.12",
+        "yiisoft/yii2": "2.0.20",
+        "yiisoft/yii2-bootstrap": "~2.0.8",
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "mpdf/mpdf": "~7.0.0",
+        "bower-asset/bootstrap": "^3.3",
+        "npm-asset/jquery": "^2.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -29,7 +33,13 @@
         "codeception/specify": "~0.4.3"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        }
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -38,13 +48,11 @@
     },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
-            "setPermission": [
-                {
-                    "runtime": "0777",
-                    "web/assets": "0777",
-                    "yii": "0755"
-                }
-            ],
+            "setPermission": [{
+                "runtime": "0777",
+                "web/assets": "0777",
+                "yii": "0755"
+            }],
             "generateCookieValidationKey": [
                 "config/web.php"
             ]

@@ -4,25 +4,61 @@ services:
     image: nginx
     ports:
       - 8000:80
+      - 3000:443
     volumes:
       # - ./web:/
-      - "./:/var/www/html"
+      - "./:/var/www/html:cached"
       - ./site.conf:/etc/nginx/conf.d/default.conf
     environment:
           - NGINX_HOST=nginx
     # command: /bin/bash -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
     depends_on:
       - php
+      - mysqldb
 
   php:
     image: nanoninja/php-fpm:7.2.15
     volumes:
-        - "./:/var/www/html"
-        - ./php.ini:/usr/local/etc/php/conf.d/php.ini"
+        - "/opcache"
+        - "./:/var/www/html:cached"
+        - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
         - ./log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+        - "./etc/config/db.php:/var/www/html/config/db.php"
   composer:
     image: "composer"
     volumes:
         - "./:/app"
     command: install
+  compass:
+      image: "marmelab/compass"
+      volumes:
+        - "./:/srv"
+      command: watch
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: barebone_phpmyadmin
+    ports:
+        - "8080:80"
+    environment:
+        - PMA_ARBITRARY=1
+        - PMA_HOST=barebone_mysql
+    restart: always
+    depends_on:
+        - mysqldb
+  mysqldb:
+    image: mysql:5.7
+    container_name: barebone_mysql
+    restart: always
+    environment:
+        - MYSQL_DATABASE=barebonedb
+        - MYSQL_ROOT_PASSWORD=verysecret
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=verysecret
+    ports:
+        - "8989:3306"
+    volumes:
+        - "./data/db/mysql:/var/lib/mysql:cached"
+        - "./etc/sql:/docker-entrypoint-initdb.d/"
+        - "./etc/mysql/sqlmode.cnf:/etc/mysql/conf.d/sqlmode.cnf"
+
     

@@ -4,7 +4,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Klushok';
+$this->title = 'Bare';
 ?>
 <div class="site-index">
 
