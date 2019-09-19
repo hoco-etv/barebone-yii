@@ -19,7 +19,7 @@ Thumbs.db
 composer.phar
 
 #data folder
-/data
+data/
 
 # Mac DS_Store Files
 .DS_Store
