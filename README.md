@@ -9,3 +9,7 @@ If this is not the case:
 5. Incase of a permission denied error: make sure the owner of the local repository and all files in it is the group www-data. `sudo chown -R www-data barebone-yii`. 
 
 *** WARNING *** When executing these permission changes, you MUST either exclude the data folder or delete it and have MYSQL remake it on the next `docker-compose up` due to permission changes which prevent executing migrations (error 13)
+
+##  hints
+- Dont forget to create your own db.php from the db.php.template!
+- To run migrations: `docker exec -it barebone-yii_php_1 bash`, then `php yii migrate/up`. To exit the container: `exit`
