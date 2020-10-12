@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * This is a template file for the db connection. Replace
+ * HOST, DB, USER and PASSWORD with the correct values for
+ * your own system configuration.
+ *
+ * possible fix for db_console.php: use 127.0.0.1 as HOST
+ * instead of localhost and possibly add custom MySQL port.
+ */
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=HOST;dbname=DB',
+    'username' => 'USER',
+    'password' => 'PASSWORD',
+    'charset' => 'utf8',
+];
