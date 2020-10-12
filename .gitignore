@@ -34,4 +34,3 @@ tests/_support/_generated
 
 # db config
 /config/db.php
-/config/console.php

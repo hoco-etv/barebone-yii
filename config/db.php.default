@@ -8,8 +8,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=barebone_mysql:3306;dbname=barebonedb',
-    'username' => 'root',
-    'password' => 'verysecret',
+    'dsn' => 'mysql:host=HOST;dbname=DB',
+    'username' => 'USER',
+    'password' => 'PASSWORD',
     'charset' => 'utf8',
 ];
